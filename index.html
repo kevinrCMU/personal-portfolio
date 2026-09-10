@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Kevin Reynoso — Information Systems student at Carnegie Mellon University. Projects in software, web development, databases, and information security."
+  >
+
+  <title>Kevin Reynoso — Portfolio</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       TOP BAR
+       ========================================================= -->
+  <header class="topbar">
+    <a class="wordmark" href="#top">Kevin Reynoso</a>
+
+    <nav class="topnav" aria-label="Main navigation">
+      <a href="#projects">Projects</a>
+      <a href="#coursework">Coursework</a>
+      <a href="#about">About</a>
+      <a href="mailto:kreynoso@andrew.cmu.edu">Email</a>
+    </nav>
+  </header>
+
+
+  <main id="top">
+
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="hero page">
+
+      <div class="hero-text">
+        <p class="eyebrow">Information Systems · Carnegie Mellon University</p>
+
+        <h1>Kevin<br>Reynoso</h1>
+
+        <p class="intro">
+          I work on software, web development, databases, and security.
+        </p>
+      </div>
+
+      <div class="hero-side">
+        <p>Currently working with</p>
+
+        <div class="stack-list">
+          <span>Go</span>
+          <span>Java</span>
+          <span>Python</span>
+          <span>JavaScript</span>
+          <span>SQL</span>
+          <span>HTML</span>
+          <span>CSS</span>
+        </div>
+
+        <a href="#projects" class="view-work">See what I’ve built ↓</a>
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         PROJECT INDEX
+         ========================================================= -->
+    <section class="project-index page" aria-label="Featured projects">
+      <a href="#go-project">
+        <span>Go + APIs</span>
+        <strong>Precipitation Forecast</strong>
+      </a>
+
+      <a href="#menucheck">
+        <span>Information Systems</span>
+        <strong>MenuCheck</strong>
+      </a>
+
+      <a href="#monomuse">
+        <span>Web Development</span>
+        <strong>MonoMuse</strong>
+      </a>
+    </section>
+
+
+    <!-- =========================================================
+         PROJECTS
+         ========================================================= -->
+    <section id="projects">
+
+      <!-- =======================================================
+           GO PROJECT
+           ======================================================= -->
+      <article class="project project-dark" id="go-project">
+
+        <div class="page project-layout">
+
+          <div class="project-title">
+            <p class="project-kicker">Self-taught project · Go + APIs</p>
+            <h2>Precipitation<br>Forecast</h2>
+
+            <p class="tech">
+              Go · net/http · JSON · HTML templates · REST APIs
+            </p>
+          </div>
+
+
+          <div class="project-story">
+
+            <section>
+              <h3>What I built</h3>
+
+              <p>
+                I built a small Go web app that estimates the user’s location,
+                gets the correct forecast from the National Weather Service,
+                and displays the chance of precipitation for upcoming forecast periods.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>Why I made it</h3>
+
+              <p>
+                I mostly wanted an excuse to learn Go. I started with a simple weather
+                idea and learned the language by figuring out each part as I needed it.
+                Working with APIs was the part I enjoyed most.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>What I learned</h3>
+
+              <p>
+                The project gave me hands-on experience making HTTP requests in Go,
+                decoding JSON into structs, handling nullable API values, using
+                request timeouts, and rendering server-side HTML templates.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>A problem I had to solve</h3>
+
+              <p>
+                The weather API does not take an IP address and immediately return a
+                forecast. I had to get coordinates first, use those coordinates to find
+                the correct NWS forecast endpoint, and then make another request for the
+                actual forecast data.
+              </p>
+            </section>
+
+          </div>
+
+        </div>
+
+
+        <!-- Real code from the project -->
+        <div class="code-band">
+          <div class="page code-layout">
+
+            <div class="code-note">
+              <p class="eyebrow light">From main.go</p>
+              <h3>Chaining the API requests</h3>
+
+              <p>
+                Each request gives the app the information it needs for the next one.
+                Keeping those steps in separate functions made the process much easier
+                for me to understand and debug.
+              </p>
+            </div>
+
+
+            <pre><code><span class="code-muted">// location → NWS endpoint → forecast</span>
+
+lat, lon, err := getLatLon(ctx)
+if err != nil {
+    return nil, err
+}
+
+forecastURL, err := getForecastURL(ctx, lat, lon)
+if err != nil {
+    return nil, err
+}
+
+fr, err := getForecast(ctx, forecastURL)
+if err != nil {
+    return nil, err
+}</code></pre>
+
+          </div>
+        </div>
+
+        <!--
+          FUTURE SCREENSHOT:
+          A screenshot of the running weather page would work well here.
+        -->
+
+      </article>
+
+
+      <!-- =======================================================
+           MENUCHECK
+           ======================================================= -->
+      <article class="project project-light" id="menucheck">
+
+        <div class="page project-layout">
+
+          <div class="project-title">
+            <p class="project-kicker">Information Systems · Team project</p>
+            <h2>MenuCheck</h2>
+
+            <p class="tech">
+              HTML · CSS · JavaScript · Systems analysis · Communication
+            </p>
+          </div>
+
+
+          <div class="project-story">
+
+            <section>
+              <h3>The project</h3>
+
+              <p>
+                MenuCheck was a four-person Information Systems project where we had to
+                identify a real organizational problem and propose a technology-based
+                solution. We were not building the full application; our job was to
+                design the system and explain how it would actually work.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>What I worked on</h3>
+
+              <p>
+                I designed and built the website used to present our proposal. My
+                teammates focused on other parts of the project, so I had to understand
+                their research and ideas well enough to turn them into one clear site
+                instead of four disconnected pieces of work.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>What I learned</h3>
+
+              <p>
+                This was one of the projects that made Information Systems make more
+                sense to me. We had to think beyond whether the technology could work
+                and consider the people using it, existing workflows, different
+                stakeholders, adoption, business value, and possible downsides.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>The challenge</h3>
+
+              <p>
+                There was a lot of research and analysis to communicate. My challenge
+                was turning that material into a website that was easier to follow than
+                a long report. I used clear sections, diagrams, a product mockup, and a
+                consistent visual style to organize the group's work.
+              </p>
+            </section>
+
+          </div>
+
+        </div>
+
+        <!--
+          FUTURE SCREENSHOTS:
+          - MenuCheck hero / problem section
+          - system mockup
+          - stakeholder or strategy section
+        -->
+
+      </article>
+
+
+      <!-- =======================================================
+           MONOMUSE
+           ======================================================= -->
+      <article class="project project-blue" id="monomuse">
+
+        <div class="page project-layout">
+
+          <div class="project-title">
+            <p class="project-kicker">Solo web development project</p>
+            <h2>MonoMuse</h2>
+
+            <p class="tech">
+              HTML · CSS · JavaScript · jQuery · Leaflet
+            </p>
+          </div>
+
+
+          <div class="project-story">
+
+            <section>
+              <h3>What I built</h3>
+
+              <p>
+                I designed and built a multi-page museum website with exhibition pages,
+                ticket purchasing, checkout, form validation, an image gallery,
+                responsive navigation, and an interactive Leaflet map.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>What I practiced</h3>
+
+              <p>
+                The project let me apply HTML, CSS, and JavaScript to a complete site
+                instead of isolated exercises. I also had to learn how to work with
+                jQuery and Leaflet alongside my own JavaScript.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>The challenge</h3>
+
+              <p>
+                Once the site grew to several pages, keeping navigation, styling, and
+                behavior consistent mattered much more. I moved shared styling and
+                JavaScript into reusable files and thought through how a visitor would
+                move from browsing the site to selecting tickets and checking out.
+              </p>
+            </section>
+
+
+            <section>
+              <h3>What I took from it</h3>
+
+              <p>
+                It was a good step from making individual web pages to thinking about
+                an entire user flow. I became more comfortable debugging interactions
+                and connecting different pieces of a site together.
+              </p>
+            </section>
+
+          </div>
+
+        </div>
+
+
+        <div class="site-path page">
+          <span>Pages I built</span>
+
+          <div>
+            <strong>Home</strong>
+            <i>→</i>
+            <strong>Exhibitions</strong>
+            <i>→</i>
+            <strong>Tickets</strong>
+            <i>→</i>
+            <strong>Checkout</strong>
+            <i>→</i>
+            <strong>Confirmation</strong>
+          </div>
+        </div>
+
+        <!--
+          FUTURE SCREENSHOTS:
+          - homepage
+          - checkout validation
+          - Leaflet map
+          - gallery
+        -->
+
+      </article>
+
+    </section>
+
+
+    <!-- =========================================================
+         COURSEWORK IN PRACTICE
+         ========================================================= -->
+    <section class="coursework page" id="coursework">
+
+      <div class="coursework-heading">
+        <p class="eyebrow">Coursework in practice</p>
+
+        <h2>
+          Smaller assignments and labs.
+        </h2>
+      </div>
+
+
+      <div class="course-list">
+
+        <article>
+          <div class="course-name">
+            <span>Java / 15-121</span>
+            <h3>Shut the Box</h3>
+          </div>
+
+          <p>
+            Worked inside a provided game framework and completed parts of the logic,
+            including dice rolls, initializing box states, and updating those states
+            based on player input.
+          </p>
+
+          <p class="course-takeaway">
+            <strong>Practiced:</strong> arrays, methods, state changes, and reading an
+            existing codebase before adding my own logic.
+          </p>
+        </article>
+
+
+        <article>
+          <div class="course-name">
+            <span>Database Design / 67-262</span>
+            <h3>SQL & relational data</h3>
+          </div>
+
+          <p>
+            Writing queries against relational datasets and working through joins,
+            subqueries, CTEs, grouping, aggregates, and database design.
+          </p>
+
+          <p class="course-takeaway">
+            <strong>Practiced:</strong> turning a question about data into a query and
+            understanding how table structure affects what is easy or difficult to ask.
+          </p>
+        </article>
+
+
+        <article>
+          <div class="course-name">
+            <span>Information Assurance & Security</span>
+            <h3>Kali Linux labs</h3>
+          </div>
+
+          <p>
+            Used Kali Linux with Nmap, Nessus, Metasploit, and Burp Suite in controlled
+            lab environments to practice reconnaissance, vulnerability analysis, and testing.
+          </p>
+
+          <p class="course-takeaway">
+            <strong>Practiced:</strong> understanding what the tools are showing me and
+            how the different stages of security testing connect.
+          </p>
+        </article>
+
+      </div>
+
+      <!--
+        FUTURE SCREENSHOTS:
+        - Shut the Box game window + small code excerpt
+        - SQL query/result
+        - Kali terminal / Burp Suite lab
+      -->
+
+    </section>
+
+
+    <!-- =========================================================
+         ABOUT
+         ========================================================= -->
+    <section class="about" id="about">
+
+      <div class="page about-layout">
+
+        <div>
+          <p class="eyebrow light">About</p>
+          <h2>Still learning.</h2>
+        </div>
+
+        <div class="about-text">
+          <p>
+            I’m a second-year Information Systems student at Carnegie Mellon.
+            I like learning by building something, getting stuck, figuring out why,
+            and making the next version better.
+          </p>
+
+          <a href="mailto:kreynoso@andrew.cmu.edu">
+            kreynoso@andrew.cmu.edu ↗
+          </a>
+
+          <!-- Add GitHub / LinkedIn here later -->
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+    <div class="page footer-inner">
+      <span>Kevin Reynoso</span>
+      <span>© <span id="year">2026</span></span>
+    </div>
+  </footer>
+
+</body>
+</html>
