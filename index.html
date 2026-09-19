@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
-    content="Kevin Reynoso — Information Systems student at Carnegie Mellon University. Projects in software, web development, databases, and information security."
+    content="Kevin Reynoso — Information Systems student at Carnegie Mellon University."
   >
 
-  <title>Kevin Reynoso - Portfolio</title>
+  <title>Kevin Reynoso | Portfolio</title>
 
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
@@ -18,434 +19,417 @@
 <body>
 
   <header class="topbar">
-    <a class="wordmark" href="#top">Kevin Reynoso</a>
+    <div class="topbar-inner">
 
-    <nav class="topnav" aria-label="Main navigation">
-      <a href="#projects">Projects</a>
-      <a href="#coursework">Coursework</a>
-      <a href="#about">About</a>
-      <a href="mailto:kreynoso@andrew.cmu.edu">Email</a>
-    </nav>
+      <a class="name" href="#top">Kevin Reynoso</a>
+
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#coursework">Coursework</a>
+        <a href="#about">About</a>
+
+        <a
+          href="Resume.pdf"
+          target="_blank"
+        >
+          Resume
+        </a>
+
+        <a
+          href="https://github.com/kevinrCMU"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+      </nav>
+
+    </div>
   </header>
 
 
   <main id="top">
 
-    <section class="hero page">
+    <section class="card intro">
 
-      <div class="hero-text">
-        <p class="eyebrow">Information Systems · Carnegie Mellon University</p>
+      <h1>Kevin Reynoso</h1>
 
-        <h1>Kevin<br>Reynoso</h1>
+      <p class="subtitle">
+        Information Systems student at Carnegie Mellon University
+      </p>
 
-        <p class="intro">
-          I work on software, web development, databases, and security.
-        </p>
-      </div>
+      <p>
+        I’m a sophomore interested in software development, databases,
+        and web applications. Most of my experience so far comes from
+        coursework and projects in Java, Python, Go, JavaScript, SQL,
+        and information security.
+      </p>
 
-      <div class="hero-side">
-        <p>Currently working with</p>
+      <p>
+        I’m currently looking for a Summer 2027 software engineering
+        or related technical internship.
+      </p>
 
-        <div class="stack-list">
-          <span>Go</span>
-          <span>Java</span>
-          <span>Python</span>
-          <span>JavaScript</span>
-          <span>SQL</span>
-          <span>HTML</span>
-          <span>CSS</span>
-        </div>
+      <div class="links">
 
-        <a href="#projects" class="view-work">See what I’ve built ↓</a>
+        <a href="mailto:kreynoso@andrew.cmu.edu">
+          Email
+        </a>
+
+        <a
+          href="https://github.com/kevinrCMU"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="Resume.pdf"
+          target="_blank"
+        >
+          Resume
+        </a>
+
       </div>
 
     </section>
 
+    <section class="card" id="projects">
 
-    <section class="project-index page" aria-label="Featured projects">
-      <a href="#go-project">
-        <span>Go + APIs</span>
-        <strong>Precipitation Forecast</strong>
-      </a>
+      <h2>Projects</h2>
 
-      <a href="#menucheck">
-        <span>Information Systems</span>
-        <strong>MenuCheck</strong>
-      </a>
+      <article class="project">
 
-      <a href="#monomuse">
-        <span>Web Development</span>
-        <strong>MonoMuse</strong>
-      </a>
-    </section>
-
-
-    <section id="projects">
-
-      <article class="project project-dark" id="go-project">
-
-        <div class="page project-layout">
-
-          <div class="project-title">
-            <p class="project-kicker">Self-taught project · Go + APIs</p>
-            <h2>Precipitation<br>Forecast</h2>
-
-            <p class="tech">
-              Go · net/http · JSON · HTML templates · REST APIs
-            </p>
-          </div>
-
-
-          <div class="project-story">
-
-            <section>
-              <h3>What I built</h3>
-
-              <p>
-                I built a small Go web app that estimates the user’s location,
-                gets the correct forecast from the National Weather Service,
-                and displays the chance of precipitation for upcoming forecast periods.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>Why I made it</h3>
-
-              <p>
-                I mostly wanted an excuse to learn how to use APIs. I started with a simple weather
-                idea and choosing go because its a very convienent option for this kind of project.
-                Working with go was the part I enjoyed most.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>What I learned</h3>
-
-              <p>
-                The project gave me hands-on experience making HTTP requests in Go,
-                decoding JSON into structs, handling nullable API values, using
-                request timeouts, and rendering server-side HTML templates.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>A problem I had to solve</h3>
-
-              <p>
-                The weather API does not take an IP address and immediately return a
-                forecast. I had to get coordinates first, use those coordinates to find
-                the correct NWS forecast endpoint, and then make another request for the
-                actual forecast data.
-              </p>
-            </section>
-
-          </div>
-
-        </div>
-
-
-        <div class="code-band">
-          <div class="page code-layout">
-
-            <div class="code-note">
-              <p class="eyebrow light">From main.go</p>
-              <h3>Chaining the API requests</h3>
-
-              <p>
-                Each request gives the app the information it needs for the next one.
-                Keeping those steps in separate functions made the process much easier
-                for me to understand and debug.
-              </p>
-            </div>
-
-
-            <pre><code><span class="code-muted">// location → NWS endpoint → forecast</span>
-
-lat, lon, err := getLatLon(ctx)
-if err != nil {
-    return nil, err
-}
-
-forecastURL, err := getForecastURL(ctx, lat, lon)
-if err != nil {
-    return nil, err
-}
-
-fr, err := getForecast(ctx, forecastURL)
-if err != nil {
-    return nil, err
-}</code></pre>
-
-          </div>
-        </div>
-
-
-      </article>
-
-
-      <article class="project project-light" id="menucheck">
-
-        <div class="page project-layout">
-
-          <div class="project-title">
-            <p class="project-kicker">Information Systems · Team project</p>
-            <h2>MenuCheck</h2>
-
-            <p class="tech">
-              HTML · CSS · JavaScript · Systems analysis · Communication
-            </p>
-          </div>
-
-
-          <div class="project-story">
-
-            <section>
-              <h3>The project</h3>
-
-              <p>
-                MenuCheck was a four person Information Systems project where we had to
-                identify a real organizational problem and propose a technology based
-                solution. We were not building the full application. Our job was to
-                design the system and explain how it would actually work.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>What I worked on</h3>
-
-              <p>
-                I designed and built the website used to present our proposal. My
-                teammates focused on other parts of the project, so I had to understand
-                their research and ideas well enough to turn them into one clear site
-                instead of four disconnected pieces of work.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>What I learned</h3>
-
-              <p>
-                This was one of the projects that made Information Systems make more
-                sense to me. We had to think beyond whether the technology could work
-                and consider the people using it, different
-                stakeholders, adoption, business value, and possible downsides.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>The challenge</h3>
-
-              <p>
-                There was a lot of research and analysis to communicate. My challenge
-                was turning that material into a website that was easier to follow than
-                a long report. I used clear sections, diagrams, a product mockup, and a
-                consistent visual style to organize the group's work.
-              </p>
-            </section>
-
-          </div>
-
-        </div>
-
-      </article>
-
-      <article class="project project-blue" id="monomuse">
-
-        <div class="page project-layout">
-
-          <div class="project-title">
-            <p class="project-kicker">Solo web development project</p>
-            <h2>MonoMuse</h2>
-
-            <p class="tech">
-              HTML · CSS · JavaScript · jQuery · Leaflet
-            </p>
-          </div>
-
-
-          <div class="project-story">
-
-            <section>
-              <h3>What I built</h3>
-
-              <p>
-                I designed and built a multi page museum website with exhibition pages,
-                ticket purchasing, checkout, form validation, an image gallery,
-                responsive navigation, and an interactive Leaflet map.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>What I practiced</h3>
-
-              <p>
-                The project let me apply HTML, CSS, and JavaScript to a complete site
-                instead of isolated exercises. I also had to learn how to work with
-                jQuery and Leaflet alongside my own JavaScript.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>The challenge</h3>
-
-              <p>
-                As I added more pages, I had to keep the design and navigation consistent across 
-                the whole site. I also worked on making the steps from viewing exhibits to buying 
-                tickets and checking out easy to follow.
-              </p>
-            </section>
-
-
-            <section>
-              <h3>What I took from it</h3>
-
-              <p>
-                It was a good step from making individual web pages to thinking about
-                how a real user would use the site. I became more comfortable debugging interactions
-                and connecting different pieces of a site together.
-              </p>
-            </section>
-
-          </div>
-
-        </div>
-
-
-        <div class="site-path page">
-          <span>Pages I built</span>
+        <div class="project-header">
 
           <div>
-            <strong>Home</strong>
-            <i>→</i>
-            <strong>Exhibitions</strong>
-            <i>→</i>
-            <strong>Tickets</strong>
-            <i>→</i>
-            <strong>Checkout</strong>
-            <i>→</i>
-            <strong>Confirmation</strong>
+            <h3>Precipitation Forecast</h3>
+
+            <p class="meta">
+              Independent project · Go
+            </p>
           </div>
+
+          <p class="skills">
+            Go · HTTP · JSON · APIs
+          </p>
+
         </div>
 
+        <p>
+          I started this project because I wanted to learn Go through
+          something more involved than tutorials. I built a small web app
+          that finds a location and uses National Weather Service data to
+          show precipitation forecasts.
+        </p>
+
+        <p>
+          Getting the forecast required several API requests rather than
+          one direct request. I first had to get coordinates for the
+          location, use those coordinates to find the correct National
+          Weather Service forecast URL, and then request the forecast
+          itself. I kept those steps in separate functions so the data was
+          easier to follow and problems were easier to debug.
+        </p>
+
+        <p>
+          I also decoded JSON responses into Go structs, handled missing
+          precipitation values, and added request timeouts. The frontend is
+          simple because I mainly used the project to learn Go and get more
+          experience working with APIs.
+        </p>
+
+        <img
+          class="project-image"
+          src="images/go-forecast.png"
+          alt="Precipitation Forecast web application showing forecast results"
+        >
+
+      </article>
+      <article class="project">
+
+        <div class="project-header">
+
+          <div>
+
+            <h3>
+              <a
+                href="https://kevinrcmu.github.io/MenuCheck/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                MenuCheck ↗
+              </a>
+            </h3>
+
+            <p class="meta">
+              Team project · The Information Systems Milieux
+            </p>
+
+          </div>
+
+          <p class="skills">
+            HTML · CSS · JavaScript
+          </p>
+
+        </div>
+
+        <p>
+          I worked with three classmates to propose a tool that uses
+          restaurant sales, ingredient costs, and preparation information
+          to help restaurants make menu decisions. We developed the idea
+          together through brainstorming, research, and feedback throughout
+          the project.
+        </p>
+
+        <p>
+          I was responsible for building the website that explained our
+          proposal. That meant understanding the work the rest of the group
+          was doing and deciding how to organize it into something that made
+          sense to someone seeing the project for the first time.
+        </p>
+
+        <p>
+          I used the site to present the process behind the idea and a sample
+          report showing how the information could be used. As the project
+          changed, I kept the website consistent with the decisions we were
+          making as a group.
+        </p>
+
+        <img
+          class="project-image"
+          src="images/menucheck.png"
+          alt="MenuCheck project website"
+        >
+
+      </article>
+      <article class="project">
+
+        <div class="project-header">
+
+          <div>
+
+            <h3>
+              <a
+                href="https://kevinrcmu.github.io/67250_techproject_phaseb/final-project/index.html"
+                target="_blank"
+                rel="noreferrer"
+              >
+                MonoMuse ↗
+              </a>
+            </h3>
+
+            <p class="meta">
+              Web development course project
+            </p>
+
+          </div>
+
+          <p class="skills">
+            HTML · CSS · JavaScript · jQuery · Leaflet
+          </p>
+
+        </div>
+
+        <p>
+          MonoMuse is a multi-page museum website I built for a web
+          development course. The site includes exhibition pages, ticket
+          selection, checkout, and confirmation pages.
+        </p>
+
+        <p>
+          I added form validation, an image gallery, responsive navigation,
+          and an interactive Leaflet map. Since the site had several pages,
+          I also had to keep the navigation, layout, and interactions
+          consistent as I added new features.
+        </p>
+
+        <p>
+          This project gave me more experience working with JavaScript
+          across a complete website instead of using it for individual
+          exercises.
+        </p>
+
+        <img
+          class="project-image"
+          src="images/monomuse.png"
+          alt="MonoMuse museum website"
+        >
 
       </article>
 
     </section>
 
-    <section class="coursework page" id="coursework">
+    <section class="card" id="coursework">
 
-      <div class="coursework-heading">
-        <p class="eyebrow">Coursework in practice</p>
+      <h2>Coursework</h2>
 
-        <h2>
-          Smaller assignments and labs.
-        </h2>
-      </div>
+      <article class="course-item">
 
+        <div class="project-header">
 
-      <div class="course-list">
-
-        <article>
-          <div class="course-name">
-            <span>Java / 15-121</span>
+          <div>
             <h3>Shut the Box</h3>
+
+            <p class="meta">
+              15-121 · Introduction to Data Structures
+            </p>
           </div>
 
-          <p>
-            Worked inside a provided game framework and completed parts of the logic,
-            including dice rolls, initializing box states, and updating those states
-            based on player input.
+          <p class="skills">
+            Java · Arrays · Methods
           </p>
 
-          <p class="course-takeaway">
-            <strong>Practiced:</strong> arrays, methods, state changes, and reading an
-            existing codebase before adding my own logic.
-          </p>
-        </article>
+        </div>
+
+        <p>
+          I worked inside a provided Java game framework and completed parts
+          of the game logic, including dice rolls, box states, and updating
+          those states after a player makes a choice.
+        </p>
+
+        <p>
+          One useful part of the assignment was getting practice reading
+          code that was already written and understanding how the methods
+          I added needed to work with the rest of the program.
+        </p>
+
+        <div class="screenshot-row">
+
+          <img
+            src="images/shut-the-box-1.png"
+            alt="Shut the Box game before a move"
+          >
+
+          <img
+            src="images/shut-the-box-2.png"
+            alt="Shut the Box game after boxes have changed"
+          >
+
+        </div>
+
+      </article>
 
 
-        <article>
-          <div class="course-name">
-            <span>Database Design / 67-262</span>
-            <h3>SQL & relational data</h3>
+      <article class="course-item">
+
+        <div class="project-header">
+
+          <div>
+            <h3>Database Design and Development</h3>
+
+            <p class="meta">
+              67-262
+            </p>
           </div>
 
-          <p>
-            Writing queries against relational datasets and working through joins,
-            subqueries, CTEs, grouping, aggregates, and database design.
+          <p class="skills">
+            SQL · PostgreSQL
           </p>
 
-          <p class="course-takeaway">
-            <strong>Practiced:</strong> turning a question about data into a query and
-            understanding how table structure affects what is easy or difficult to ask.
-          </p>
-        </article>
+        </div>
+
+        <p>
+          I work with relational datasets in PostgreSQL and write queries
+          using joins, subqueries, common table expressions, grouping, and
+          aggregate functions.
+        </p>
+
+        <p>
+          The assignments usually start with a question about the data and
+          require me to determine which tables and relationships I need to
+          use to answer it. We also work with relational database design
+          and how tables should be structured.
+        </p>
+
+      </article>
 
 
-        <article>
-          <div class="course-name">
-            <span>Information Assurance & Security</span>
-            <h3>Kali Linux labs</h3>
+      <article class="course-item">
+
+        <div class="project-header">
+
+          <div>
+            <h3>Information Assurance &amp; Security</h3>
+
+            <p class="meta">
+              Course labs
+            </p>
           </div>
 
-          <p>
-            Used Kali Linux with Nmap, Nessus, Metasploit, and Burp Suite in controlled
-            lab environments to practice reconnaissance, vulnerability analysis, and testing.
+          <p class="skills">
+            Nmap · Nessus · Metasploit · Burp Suite
           </p>
 
-          <p class="course-takeaway">
-            <strong>Practiced:</strong> understanding what the tools are showing me and
-            how the different stages of security testing connect.
-          </p>
-        </article>
+        </div>
 
-      </div>
+        <p>
+          I used security tools including Nmap, Nessus, Metasploit, and
+          Burp Suite in controlled lab environments. The labs covered areas
+          such as reconnaissance, vulnerability scanning, and testing known
+          vulnerabilities.
+        </p>
 
+      </article>
 
     </section>
 
-    <section class="about" id="about">
+    <section class="card" id="about">
 
-      <div class="page about-layout">
+      <h2>About</h2>
 
-        <div>
-          <p class="eyebrow light">About</p>
-          <h2>Still learning.</h2>
-        </div>
+      <p>
+        I’m studying Information Systems because I’m most interested in the
+        technical side of the major. I especially enjoy programming and SQL,
+        and I like projects where there is a clear problem to work through
+        rather than one exact set of instructions to follow.
+      </p>
 
-        <div class="about-text">
-          <p>
-            I’m a second-year Information Systems student at Carnegie Mellon.
-            I like learning by building projects, facing new problems, and finding ways to solve them. 
-          </p>
+      <p>
+        I’ve also been trying projects outside of class when I want to learn
+        something new. That is how I ended up learning Go for my weather
+        project. I had not used the language before, but working on an
+        actual project gave me a reason to understand how it worked instead
+        of only reading about it.
+      </p>
 
-          <a href="mailto:kreynoso@andrew.cmu.edu">
-            kreynoso@andrew.cmu.edu ↗
-          </a>
+      <p>
+        I’m looking for a Summer 2027 internship where I can get more
+        experience working on software with other developers.
+      </p>
 
-        </div>
+      <div class="links">
+
+        <a href="mailto:kreynoso@andrew.cmu.edu">
+          Email
+        </a>
+
+        <a
+          href="https://github.com/kevinrCMU"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
+
+        <a
+          href="Resume.pdf"
+          target="_blank"
+        >
+          Resume
+        </a>
 
       </div>
 
     </section>
 
   </main>
-
-
-  <footer class="footer">
-    <div class="page footer-inner">
-      <span>Kevin Reynoso</span>
-      <span>© <span id="year">2026</span></span>
-    </div>
+  <footer>
+    <span>Kevin Reynoso</span>
+    <span>© <span id="year">2026</span></span>
   </footer>
 
 </body>
+
 </html>
